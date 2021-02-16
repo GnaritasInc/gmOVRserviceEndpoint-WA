@@ -1,0 +1,15 @@
+<h3>All Posts:</h3>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <p>Created at <%= post.created_at %></p>
+      <h4>Headers: <%= post.headers %></h4>
+      <h4>Query String: <%= post.query_string %></h4>
+      <h4>Submission:</h4>
+      <pre>
+        <%= Rack::Utils.escape_html(post.request.to_s.gsub(', ', ", \n\t"))  %>
+      </pre>
+    </li>
+  <% end %>
+</ul>
+        
