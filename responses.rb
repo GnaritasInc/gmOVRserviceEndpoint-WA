@@ -8,7 +8,7 @@ end
 def instantiate_rule (json, response_rule)
   match = test_rule(response_rule, json)
   response_json = response_rule[:response].to_json
-  match.captures.map.with_index do |item, index| {
+  match.captures.map.with_index { |item, index| 
       response_json=response_json.gsub!(('$'+index.to_s),item) 
   }
   return JSON.parse(response_json)
@@ -17,6 +17,7 @@ end
 def  make_response(token,return_code,error_code,error_message)
   return  {'returnToken':token, 'transactionID':'12345', 'return_code':return_code, 'error_code':error_code, 'error_message':error_message}.to_json
 end
+
 
 def error_response (return_code,error_code, error_message)
   make_response('',return_code,error_code,error_message)
